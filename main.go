@@ -57,10 +57,11 @@ func main() {
 	if err != nil {
 		log.Panic("error getting working dir")
 	}
-	out, err := exec.Command("/usr/bin/bash", filepath.Join(dir, "nyaa-get"), url.QueryEscape(fmt.Sprintf("%s %s%s", anime, subgroup, quality))).CombinedOutput()
+	out, err := exec.Command("/bin/sh", filepath.Join(dir, "nyaa-get"), url.QueryEscape(fmt.Sprintf("%s %s%s", anime, subgroup, quality))).CombinedOutput()
 	if err != nil {
 		log.Panic(err)
 	}
+        log.Println(out)
 	feed := parseRss2(out)
 
 
