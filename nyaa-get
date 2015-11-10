@@ -1,0 +1,1 @@
+echo $(curl -s "http://www.nyaa.se/?page=rss&term=$1")
