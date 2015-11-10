@@ -61,7 +61,6 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-        log.Println(out)
 	feed := parseRss2(out)
 
 
