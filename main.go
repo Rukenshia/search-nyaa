@@ -1,28 +1,28 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"os/exec"
 	"encoding/xml"
+	"fmt"
 	"log"
 	"net/url"
-	"regexp"
+	"os"
+	"os/exec"
 	"path/filepath"
+	"regexp"
 )
 
 type Rss2 struct {
-	XMLName xml.Name `xmlns:"rss"`
-	Version string `xml:"version,attr"`
-	Title string `xml:"channel>title"`
-	Link string `xml:"channel>link"`
-	Description string `xml:"channel>description"`
-	ItemList []Item `xml:"channel>item"`
+	XMLName     xml.Name `xmlns:"rss"`
+	Version     string   `xml:"version,attr"`
+	Title       string   `xml:"channel>title"`
+	Link        string   `xml:"channel>link"`
+	Description string   `xml:"channel>description"`
+	ItemList    []Item   `xml:"channel>item"`
 }
 
 type Item struct {
 	Title string `xml:"title"`
-	Link string `xml:"link"`
+	Link  string `xml:"link"`
 }
 
 func parseRss2(content []byte) Rss2 {
@@ -62,7 +62,6 @@ func main() {
 		log.Panic(err)
 	}
 	feed := parseRss2(out)
-
 
 	episodeReg := regexp.MustCompile(fmt.Sprintf(`\[(.*)\] %s - ([0-9]{1,}(v[0-9]{1,})?)`, anime))
 	var episodes []string
